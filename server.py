@@ -4,10 +4,13 @@ import os
 import json
 
 async def handle_request(request):
-  f = open("file")
-  file_content = json.load(f)
-  f.close()
-  return web.json_response(file_content)
+  try:
+    f = open("file")
+    file_content = json.load(f)
+    f.close()
+    return web.json_response(file_content)
+  except:
+    return web.json_response([])
 
 async def serve_index(request):
   return web.FileResponse('./public/index.html')
