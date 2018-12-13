@@ -6,7 +6,7 @@ window.onload = function(){
       ingredient: input.value,
     }
 
-    fetch("http://raspy:3000", {
+    fetch("/todos", {
       body: JSON.stringify(payload),
       method: "POST",
     })
