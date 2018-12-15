@@ -2,15 +2,27 @@ from aiohttp import web
 from bloat import cors_factory
 import os
 import json
+import uuid
 
-async def handle_request(request):
+def item_valid(item):
+  try:
+    if type(item["title"]) == str and type(item["description"]) == str and type(item["recipe"]) == str:
+      return True
+    return False
+  except:
+    return False
+
+def get_item_list_from_file():
   try:
     f = open("file")
     file_content = json.load(f)
     f.close()
-    return web.json_response(file_content)
+    return file_content
   except:
-    return web.json_response([])
+    return []
+
+async def handle_request(request):
+  return web.json_response(get_item_list_from_file())
 
 async def serve_index(request):
   return web.FileResponse('./public/index.html')
@@ -19,11 +31,17 @@ async def serve_script(request):
   return web.FileResponse('./public/script.js')
 
 async def handle_post(request):
-  body = await request.json()
+  item = await request.json()
+  print(item)
+  if not item_valid(item):
+    return web.json_response({"error": "item is not valid"}, status=400)
+  item["id"] = str(uuid.uuid4())
+  item_list = get_item_list_from_file()
+  item_list.append(item)
   f = open("file", "w+")
-  f.write(json.dumps(body))
+  f.write(json.dumps(item_list))
   f.close()
-  return web.json_response(body)
+  return web.json_response(item_list)
 
 app = web.Application(middlewares=[cors_factory])
 

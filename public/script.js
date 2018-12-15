@@ -1,19 +1,29 @@
-let items = []
-
 window.onload = function(){
 
   loadList().then( () => {
 
       const submitButton = document.getElementById("submitButton")
       submitButton.onclick = function() {
-        const input = document.getElementById("input")
-        const payload = items.concat([input.value])
+        const titleInput = document.getElementById("title_input")
+        const descriptionInput = document.getElementById("description_input")
+        const recipeInput = document.getElementById("recipe_input")
+        const payload = {
+          title: titleInput.value,
+          description: descriptionInput.value,
+          recipe: recipeInput.value,
+        }
+
+        if (!payload.title || !payload.description || !payload.recipe) {
+          return
+        }
 
         fetch("/todos", {
           body: JSON.stringify(payload),
           method: "POST",
         }).then( () => {
-          input.value = ""
+          titleInput.value = ""
+          descriptionInput.value = ""
+          recipeInput.value = ""
           loadList()
         })
       }
