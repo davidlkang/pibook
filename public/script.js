@@ -34,9 +34,7 @@ function loadList() {
         list.removeChild(list.firstChild)
       }
       items.forEach(element => {
-        const item = document.createElement("li")
-        item.innerHTML = element
-        list.appendChild(item)
+        list.appendChild(buildItem(element))
       });
     }
   )
@@ -49,4 +47,12 @@ function clearList() {
   }).then( () => {
     loadList()
   })
+}
+
+function buildItem(text){
+  const item = document.createElement("li")
+  item.className = ""
+  item.innerHTML = text
+
+  return item
 }
