@@ -58,11 +58,3 @@ function clearList() {
     loadList()
   })
 }
-
-function buildItem(text){
-  const item = document.createElement("li")
-  item.className = ""
-  item.innerHTML = text
-
-  return item
-}

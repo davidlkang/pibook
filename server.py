@@ -30,6 +30,9 @@ async def serve_index(request):
 async def serve_script(request):
   return web.FileResponse('./public/script.js')
 
+async def serve_render_helper(request):
+  return web.FileResponse('./public/renderHelper.js')
+
 async def handle_post(request):
   item = await request.json()
   print(item)
@@ -49,5 +52,6 @@ app.router.add_get('/todos', handle_request)
 app.router.add_post('/todos', handle_post)
 app.router.add_get('/', serve_index)
 app.router.add_get('/script.js', serve_script)
+app.router.add_get('/renderHelper.js', serve_render_helper)
 
 web.run_app(app,port=3000)
