@@ -44,6 +44,18 @@ async def handle_post(request):
   f.close()
   return web.json_response(item_list)
 
+async def handle_delete(request):
+  id = request.match_info['id']
+  item_list = get_item_list_from_file()
+  f = open("file", "w+")
+  new_item_list = []
+  for item in item_list:
+    if item["id"] != id:
+      new_item_list.append(item)
+  f.write(json.dumps(new_item_list))
+  f.close()
+  return web.json_response({})
+
 app = web.Application()
 
 app.router.add_get('/todos', handle_request)
@@ -51,5 +63,6 @@ app.router.add_post('/todos', handle_post)
 app.router.add_get('/', serve_index)
 app.router.add_get('/script.js', serve_script)
 app.router.add_get('/renderHelper.js', serve_render_helper)
+app.router.add_delete('/todos/{id}', handle_delete)
 
 web.run_app(app,port=3000)

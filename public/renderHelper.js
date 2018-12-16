@@ -35,7 +35,13 @@ function buildItem(props){
                     createElement('button', {
                       className: "right btn waves-effect waves-dark red darken-3",
                       innerHTML:"delete",
-                      onclick: () => {}
+                      onclick: () => {
+                        fetch("/todos/" + props.id, {
+                          method: "DELETE",
+                        }).then( () => {
+                          loadList()
+                        })
+                      }
                     })
                 ]
               })
