@@ -6,7 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>title</title>
     <style>
-
+        .item-flexcontainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: stretch;
+        }
+        .item-flexitem{
+            flex: 1 1 auto;
+            align-self: auto;
+        }
     </style>
     <script src="renderHelper.js"></script>
     <script src="script.js"></script>
@@ -15,9 +26,7 @@
 </head>
 <body>
     <div class="container">
-        <button id="clearButton" class="btn waves-effect waves-dark red darken-3">Clear</button>
-        <ul id="list"></ul>
-
+        <div id="list"></div>
 
         <div class="row card ">
             <div class="card-content">
