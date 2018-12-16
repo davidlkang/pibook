@@ -99,7 +99,8 @@ function buildInput ({id, label}) {
         }),
         createElement('label', {
           for: "title-input",
-          innerHTML: label
+          innerHTML: label,
+          className: "no-click"
         })
       ]
     })
