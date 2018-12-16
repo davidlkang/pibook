@@ -34,7 +34,6 @@ async def serve_render_helper(request):
 
 async def handle_post(request):
   item = await request.json()
-  print(item)
   if not item_valid(item):
     return web.json_response({"error": "item is not valid"}, status=400)
   item["id"] = str(uuid.uuid4())
