@@ -1,5 +1,4 @@
 from aiohttp import web
-from bloat import cors_factory
 import os
 import json
 import uuid
@@ -46,7 +45,7 @@ async def handle_post(request):
   f.close()
   return web.json_response(item_list)
 
-app = web.Application(middlewares=[cors_factory])
+app = web.Application()
 
 app.router.add_get('/todos', handle_request)
 app.router.add_post('/todos', handle_post)
