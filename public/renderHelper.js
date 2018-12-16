@@ -24,9 +24,9 @@ function buildItem(props){
                 createElement('div', {
                   className: "item-flexitem",
                   children:[
-                    createElement('h4', {innerHTML: props.title}),
-                    createElement('p', {innerHTML: props.description}),
-                    createElement('p', {innerHTML: props.recipe}),
+                    createElement('h4', {innerHTML: props.title, className: "whitespace"}),
+                    createElement('p', {innerHTML: props.description, className: "whitespace"}),
+                    createElement('p', {innerHTML: props.recipe, className: "whitespace"}),
                   ]
                 }),
                 createElement('div', {
@@ -48,6 +48,70 @@ function buildItem(props){
             ]
         })]
       })]
+    })
+  )
+}
+
+function buildForm({onCancel, onSubmit}){
+  return (
+    createElement('div', {
+      className: "row card",
+      children: [
+        createElement('div', {
+          className: "card-content",
+          children: [
+            createElement('div', {
+              className: "col s6",
+              children: [
+                buildInput({id: "title-input", label: "Title"}),
+                buildInput({id: "description-input", label: "Description"}),
+                buildInput({id: "recipe-input", label: "Recipe"}),
+                createElement('button', {
+                  id: "submit-button",
+                  className: "btn waves-effect waves-light",
+                  innerHTML: "Submit",
+                  onclick: onSubmit,
+                }),
+                createElement('button', {
+                  id: "cancel-button",
+                  className: "btn waves-effect waves-light",
+                  innerHTML: "Cancel",
+                  onclick: onCancel,
+                })
+              ]
+            })
+          ]
+        })
+      ]
+    })
+  )
+}
+
+function buildInput ({id, label}) {
+  return (
+      createElement('div', {
+      className: "input-field",
+      children: [
+        createElement('textarea', {
+          id: id,
+          type: "text",
+          className: "materialize-textarea"
+        }),
+        createElement('label', {
+          for: "title-input",
+          innerHTML: label
+        })
+      ]
+    })
+  )
+}
+
+function buildAddButton ({onClick}) {
+  return (
+    createElement('button', {
+      className: "btn waves-effect waves-light",
+      innerHTML: "Add",
+      onclick: onClick,
     })
   )
 }

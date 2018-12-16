@@ -18,6 +18,9 @@
             flex: 1 1 auto;
             align-self: auto;
         }
+        .whitespace{
+            white-space: pre-wrap;
+        }
     </style>
     <script src="renderHelper.js"></script>
     <script src="script.js"></script>
@@ -27,27 +30,7 @@
 <body>
     <div class="container">
         <div id="list"></div>
-
-        <div class="row card ">
-            <div class="card-content">
-                <div class="col s6">
-                    <div class="input-field">
-                        <textarea id="title_input" type="text" class="materialize-textarea"></textarea>
-                        <label for="title_input">Title</label>
-                    </div>
-                    <div class="input-field">
-                        <textarea id="description_input" type="text" class="materialize-textarea"></textarea>
-                        <label for="description_input">Description</label>
-                    </div>
-                    <div class="input-field">
-                        <textarea id="recipe_input" type="text" class="materialize-textarea"></textarea>
-                        <label for="recipe_input">Recipe</label>
-                    </div>
-                    <button id="submitButton" class="btn waves-effect waves-light">Submit</button>
-                </div>
-
-            </div>
-        </div>
+        <div id="form"></div>
     </div>
 
      <!-- Compiled and minified JavaScript -->
